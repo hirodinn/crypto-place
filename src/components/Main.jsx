@@ -1,16 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Main.css";
 
 export function Main() {
   const [coins, setCoins] = useState([]);
-  async function getData() {
-    const response = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1"
-    );
-    setCoins(response.data);
-  }
-  getData();
+  useEffect(() => {
+    async function getData() {
+      const response = await axios.get(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1"
+      );
+      setCoins(response.data);
+    }
+    getData();
+  }, []);
   return (
     <main>
       <h1>
@@ -41,19 +43,20 @@ export function Main() {
                 <tr>
                   <td>{i + 1}</td>
                   <td>
+                    <img src={coin.image} />
                     {coin.name} - {coin.symbol}
                   </td>
                   <td>$ {coin.current_price}</td>
                   <td
                     className={
-                      Number(coin.price_change_percentage_24) > 0
+                      Number(coin.price_change_percentage_24h) > 0
                         ? "red"
                         : "green"
                     }
                   >
                     {coin.price_change_percentage_24h}
                   </td>
-                  <td>$ {coin.market_cup}</td>
+                  <td>$ {coin.market_cap}</td>
                 </tr>
               );
             })}

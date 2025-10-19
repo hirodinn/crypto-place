@@ -56,8 +56,9 @@ main .input-container button:active {
 }
 
 .currency-container {
-  width: 80vw;
-  max-width: 700px;
+  width: 90vw;
+  max-width: 800px;
+  margin-top: 50px;
 }
 .currency-container table {
   width: 100%;
@@ -71,6 +72,8 @@ main footer {
   font-size: 12px;
   padding-top: 10px;
   margin-top: 100px;
+  margin-bottom: 30px;
+  border-top: 3px solid gray;
 }
 
 tr {
@@ -78,10 +81,10 @@ tr {
   display: flex;
   justify-content: space-around;
   border-bottom: 4px solid gray;
-  height: 50px;
+  height: 70px;
   align-items: center;
   font-size: 16px;
-  padding: 20px;
+  padding: 0 10px 0 20px;
 }
 tr td {
   width: fit-content;
@@ -91,23 +94,35 @@ tr td {
 }
 
 tr td:first-of-type {
-  width: 5%;
+  width: 10%;
 }
 tr td:nth-of-type(2) {
-  width: 30%;
+  width: 50%;
 }
 tr td:nth-of-type(3) {
-  width: 15%;
+  width: 20%;
 }
 tr td:nth-of-type(4) {
-  width: 15%;
+  width: 20%;
 }
 tr td:nth-of-type(5) {
-  width: 30%;
+  width: 25%;
+  justify-content: flex-end;
 }
+td img {
+  width: 30px;
+  margin-right: 10px;
+}
+
 .red {
   color: red;
 }
 .green {
   color: green;
+}
+
+@media (max-width: 770px) {
+  tr td:nth-of-type(5) {
+    display: none;
+  }
 }

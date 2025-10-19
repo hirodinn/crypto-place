@@ -9,28 +9,28 @@ main {
 }
 
 main > h1 {
-  font-size: 70px;
+  font-size: max(4vw, 35px);
   line-height: 1.1;
 }
 main > p {
   margin: 30px;
+  line-height: 1.4;
 }
 
 main .input-container {
-  width: 50vw;
   background-color: white;
-  height: 50px;
-  max-width: 500px;
+  height: 55px;
+  width: 500px;
   display: flex;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 5px;
   overflow: hidden;
 }
 main .input-container input {
   width: 80%;
   height: 100%;
   padding-left: 15px;
-  font-size: 20px;
+  font-size: 15px;
 }
 main .input-container input:focus {
   outline: none;
@@ -41,7 +41,7 @@ main .input-container button {
   background: #7927ff;
   color: #fff;
   font-size: 16px;
-  border-radius: 7px;
+  border-radius: 5px;
   box-shadow: 0 1px 1px 0 #7927ff;
 }
 main .input-container button:focus {

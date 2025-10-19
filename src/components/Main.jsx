@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./Main.css";
+import { Header } from "./Header";
 
 export function Main() {
   const [coins, setCoins] = useState([]);
@@ -15,6 +16,7 @@ export function Main() {
   }, []);
   return (
     <main>
+      <Header />
       <h1>
         Largest <br /> Crypto Marketplace
       </h1>

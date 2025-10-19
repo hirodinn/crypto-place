@@ -1,3 +1,11 @@
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+
 export function ShowStatics() {
-  return <h1>Statics</h1>;
+  return (
+    <>
+      <Header />
+      <Footer />
+    </>
+  );
 }

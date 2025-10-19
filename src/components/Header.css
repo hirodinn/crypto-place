@@ -40,6 +40,9 @@ header .right select {
   border-radius: 7px;
   margin-right: 15px;
 }
+header .right section option {
+  background: transparent;
+}
 header .right .sign-up {
   background-color: white;
   color: black;

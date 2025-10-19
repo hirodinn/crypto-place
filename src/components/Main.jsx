@@ -1,7 +1,9 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Main.css";
 import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 export function Main() {
   const [coins, setCoins] = useState([]);
@@ -42,30 +44,32 @@ export function Main() {
           <tbody>
             {coins.map((coin, i) => {
               return (
-                <tr>
-                  <td>{i + 1}</td>
-                  <td>
-                    <img src={coin.image} />
-                    {coin.name} - {coin.symbol}
-                  </td>
-                  <td>$ {coin.current_price}</td>
-                  <td
-                    className={
-                      Number(coin.price_change_percentage_24h) > 0
-                        ? "red"
-                        : "green"
-                    }
-                  >
-                    {coin.price_change_percentage_24h}
-                  </td>
-                  <td>$ {coin.market_cap}</td>
-                </tr>
+                <Link to="/coin">
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td>
+                      <img src={coin.image} />
+                      {coin.name} - {coin.symbol}
+                    </td>
+                    <td>$ {coin.current_price}</td>
+                    <td
+                      className={
+                        Number(coin.price_change_percentage_24h) > 0
+                          ? "red"
+                          : "green"
+                      }
+                    >
+                      {coin.price_change_percentage_24h}
+                    </td>
+                    <td>$ {coin.market_cap}</td>
+                  </tr>
+                </Link>
               );
             })}
           </tbody>
         </table>
       </div>
-      <footer>Copyright @ 2024, Cryptoplace - All Right Reserved.</footer>
+      <Footer />
     </main>
   );
 }

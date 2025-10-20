@@ -35,6 +35,7 @@ export function Main({ currency, symbols, setCurrency }) {
 
           setCoins(response.data);
         }
+        setInputValue("");
       } catch (error) {
         console.error("Error fetching data:", error);
         setCoins([]);
@@ -65,6 +66,9 @@ export function Main({ currency, symbols, setCurrency }) {
           value={inputValue}
           onChange={(e) => {
             setInputValue(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSearch();
           }}
         />
         <button onClick={handleSearch}>Search</button>

@@ -72,7 +72,8 @@ export function Main({ currency, symbols, setCurrency }) {
           value={inputValue}
           onChange={(e) => {
             if (e.target.value === "") {
-              setCoins(coinContainer);
+              setCoins(coinContainer.slice(0, 10));
+              setShowSuggestion(false);
             }
             setInputValue(e.target.value);
           }}
@@ -85,7 +86,7 @@ export function Main({ currency, symbols, setCurrency }) {
             setShowSuggestion(!showSuggesiton);
           }}
         >
-          {">"}
+          ▼
         </p>
         <datalist id="coinlist" className={showSuggesiton ? "" : "hide"}>
           {suggesitions.map((suggestion) => {
@@ -94,6 +95,7 @@ export function Main({ currency, symbols, setCurrency }) {
                 value={suggestion.name}
                 onClick={(e) => {
                   setInputValue(e.target.value);
+                  setShowSuggestion(false);
                 }}
               >
                 {suggestion.name}

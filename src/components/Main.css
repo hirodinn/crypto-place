@@ -29,7 +29,7 @@ main .input-container {
   position: relative;
 }
 main .input-container input {
-  width: 80%;
+  width: 76%;
   height: 100%;
   padding-left: 15px;
   font-size: 15px;
@@ -137,6 +137,7 @@ td img {
   scrollbar-width: none;
   position: absolute;
   left: 81%;
+  border-radius: 10px;
 }
 #coinlist option {
   min-height: 30px;
@@ -145,6 +146,7 @@ td img {
   text-align: start;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 #coinlist option:hover {
   background-color: rgba(255, 255, 255, 0.329);

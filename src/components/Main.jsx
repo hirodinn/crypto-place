@@ -35,7 +35,6 @@ export function Main({ currency, symbols, setCurrency }) {
     if (filtered.length > 0) {
       setSuggestions(filtered);
     } else {
-      console.log("No matches found");
       setSuggestions([]); // clear or show a 'no results' message
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,7 +49,6 @@ export function Main({ currency, symbols, setCurrency }) {
     if (filtered.length > 0) {
       setCoins(filtered);
     } else {
-      console.log("No matches found");
       setCoins([]); // clear or show a 'no results' message
     }
   }

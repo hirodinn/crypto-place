@@ -45,6 +45,7 @@ main .input-container button {
   font-size: 16px;
   border-radius: 5px;
   box-shadow: 0 1px 1px 0 #7927ff;
+  cursor: pointer;
 }
 main .input-container button:focus {
   outline: none;
@@ -129,7 +130,7 @@ td img {
   background-color: rgb(61, 61, 61);
   max-width: fit-content;
   height: fit-content;
-  max-height: 200px;
+  max-height: 500px;
   z-index: 2;
   display: flex;
   flex-direction: column;

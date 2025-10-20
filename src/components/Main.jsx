@@ -24,17 +24,16 @@ export function Main({ currency, symbols, setCurrency }) {
           const matched = await axios.get(
             `https://api.coingecko.com/api/v3/search?query=${searchQuery.toLowerCase()}`
           );
-          const listOfMatched = matched.data;
-          const promises = listOfMatched.coins.map((coin) =>
-            axios.get(
-              `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coin.id}`
-            )
+
+          const firstFiveCoins = matched.data.coins;
+
+          const ids = firstFiveCoins.map((coin) => coin.id).join(",");
+
+          const response = await axios.get(
+            `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${ids}`
           );
 
-          const results = await Promise.all(promises);
-          console.log(results);
-          const temp = results.map((res) => res.data[0]);
-          setCoins(temp);
+          setCoins(response.data);
         }
       } catch (error) {
         console.error("Error fetching data:", error);

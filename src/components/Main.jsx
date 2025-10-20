@@ -5,17 +5,17 @@ import "./Main.css";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-export function Main() {
+export function Main({ currency, symbols }) {
   const [coins, setCoins] = useState([]);
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1"
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=10&page=1`
       );
       setCoins(response.data);
     }
     getData();
-  }, []);
+  }, [currency]);
   return (
     <main>
       <h1>
@@ -50,17 +50,21 @@ export function Main() {
                       <img src={coin.image} />
                       {coin.name} - {coin.symbol}
                     </td>
-                    <td>$ {coin.current_price}</td>
+                    <td>
+                      {symbols[currency]} {coin.current_price}
+                    </td>
                     <td
                       className={
-                        Number(coin.price_change_percentage_24h) > 0
+                        Number(coin.price_change_percentage_24h) < 0
                           ? "red"
                           : "green"
                       }
                     >
                       {coin.price_change_percentage_24h}
                     </td>
-                    <td>$ {coin.market_cap}</td>
+                    <td>
+                      {symbols[currency]} {coin.market_cap}
+                    </td>
                   </tr>
                 </Link>
               );

@@ -1,0 +1,25 @@
+.coin-details-container {
+  width: 80vw;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loading {
+  width: 50px;
+  height: 50px;
+  border: 3px solid white;
+  border-top-color: steelblue;
+  border-radius: 50%;
+  animation: rotateInfinitely 1.5s ease-in-out infinite;
+}
+
+@keyframes rotateInfinitely {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

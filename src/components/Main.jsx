@@ -44,7 +44,7 @@ export function Main() {
           <tbody>
             {coins.map((coin, i) => {
               return (
-                <Link to="/coin">
+                <Link to={`/coin/${coin.id}`}>
                   <tr>
                     <td>{i + 1}</td>
                     <td>

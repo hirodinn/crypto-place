@@ -85,6 +85,7 @@ tr td {
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
+  color: white;
 }
 
 tr td:first-of-type {
@@ -114,9 +115,11 @@ Link {
 
 .red {
   color: red;
+  text-decoration: none;
 }
 .green {
   color: green;
+  text-decoration: none;
 }
 
 @media (max-width: 770px) {

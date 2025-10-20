@@ -14,6 +14,7 @@ header .left img {
   width: 15vw;
   min-width: 120px;
   max-width: 180px;
+  cursor: pointer;
 }
 
 header ul {
@@ -23,6 +24,7 @@ header ul {
 }
 header ul li {
   margin: 15px;
+  cursor: pointer;
 }
 
 header .right {
@@ -39,7 +41,6 @@ header .right select {
   font-size: 13px;
   border-radius: 7px;
   margin-right: 15px;
-  cursor: pointer;
   outline: none;
 }
 header .right select option {
@@ -56,6 +57,7 @@ header .right .sign-up {
   display: flex;
   align-items: center;
   font-size: 15px;
+  cursor: pointer;
 }
 header .right img {
   font-size: 15px;

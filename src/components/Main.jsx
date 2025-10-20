@@ -5,7 +5,7 @@ import "./Main.css";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-export function Main() {
+export function Main({ currency, setCurrency }) {
   const [coins, setCoins] = useState([]);
   useEffect(() => {
     async function getData() {
@@ -18,7 +18,7 @@ export function Main() {
   }, []);
   return (
     <main>
-      <Header />
+      <Header currency={currency} setCurrency={setCurrency} />
       <h1>
         Largest <br /> Crypto Marketplace
       </h1>

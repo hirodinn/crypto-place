@@ -1,5 +1,5 @@
 import "./Header.css";
-export function Header() {
+export function Header({ currency, setCurrency }) {
   return (
     <header>
       <div className="left">
@@ -12,10 +12,15 @@ export function Header() {
         <li>Blog</li>
       </ul>
       <div className="right">
-        <select>
-          <option>USD</option>
-          <option>EUR</option>
-          <option>INR</option>
+        <select
+          onChange={(e) => {
+            setCurrency(e.target.value);
+          }}
+          value={currency}
+        >
+          <option value="usd">USD</option>
+          <option value="eur">EUR</option>
+          <option value="inr">INR</option>
         </select>
         <div className="sign-up">
           Sign up <img src="/header-icons/arrow.png" />

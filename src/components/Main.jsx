@@ -1,12 +1,11 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Main.css";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
 
 export function Main({ currency, symbols }) {
   const [coins, setCoins] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     async function getData() {
       const response = await axios.get(
@@ -32,7 +31,7 @@ export function Main({ currency, symbols }) {
       <div className="currency-container">
         <table>
           <thead>
-            <tr>
+            <tr style={{ cursor: "default" }}>
               <td>#</td>
               <td>Coins</td>
               <td>Price</td>
@@ -43,30 +42,28 @@ export function Main({ currency, symbols }) {
           <tbody>
             {coins.map((coin, i) => {
               return (
-                <Link to={`/coin/${coin.id}`}>
-                  <tr>
-                    <td>{i + 1}</td>
-                    <td>
-                      <img src={coin.image} />
-                      {coin.name} - {coin.symbol}
-                    </td>
-                    <td>
-                      {symbols[currency]} {coin.current_price}
-                    </td>
-                    <td
-                      className={
-                        Number(coin.price_change_percentage_24h) < 0
-                          ? "red"
-                          : "green"
-                      }
-                    >
-                      {coin.price_change_percentage_24h}
-                    </td>
-                    <td>
-                      {symbols[currency]} {coin.market_cap}
-                    </td>
-                  </tr>
-                </Link>
+                <tr onClick={() => navigate(`/coin/${coin.id}`)}>
+                  <td>{i + 1}</td>
+                  <td>
+                    <img src={coin.image} />
+                    {coin.name} - {coin.symbol}
+                  </td>
+                  <td>
+                    {symbols[currency]} {coin.current_price}
+                  </td>
+                  <td
+                    className={
+                      Number(coin.price_change_percentage_24h) < 0
+                        ? "red"
+                        : "green"
+                    }
+                  >
+                    {coin.price_change_percentage_24h}
+                  </td>
+                  <td>
+                    {symbols[currency]} {coin.market_cap}
+                  </td>
+                </tr>
               );
             })}
           </tbody>

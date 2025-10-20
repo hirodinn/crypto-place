@@ -16,11 +16,11 @@ export default function App() {
       <Route
         index
         element={
-          <>
-            <Header currency={currency} setCurrency={setCurrency} />
-            <Main currency={currency} symbols={symbols} />
-            <Footer />
-          </>
+          <Main
+            currency={currency}
+            symbols={symbols}
+            setCurrency={setCurrency}
+          />
         }
       />
       <Route
@@ -31,6 +31,16 @@ export default function App() {
             <CoinDetails currency={currency} symbols={symbols} />
             <Footer />
           </>
+        }
+      />
+      <Route
+        path="/search/:searchQuery"
+        element={
+          <Main
+            currency={currency}
+            symbols={symbols}
+            setCurrency={setCurrency}
+          />
         }
       />
     </Routes>

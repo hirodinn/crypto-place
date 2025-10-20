@@ -28,7 +28,7 @@ export function Main({ currency, symbols, setCurrency }) {
           const firstFiveCoins = matched.data.coins;
 
           const ids = firstFiveCoins.map((coin) => coin.id).join(",");
-
+          //if we use the promise all it is indivial and the api server will limit us but in the comma case this is recoreded as a single record
           const response = await axios.get(
             `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${ids}`
           );

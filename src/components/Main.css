@@ -26,7 +26,7 @@ main .input-container {
   display: flex;
   align-items: center;
   border-radius: 5px;
-  overflow: hidden;
+  position: relative;
 }
 main .input-container input {
   width: 80%;
@@ -54,6 +54,11 @@ main .input-container button:hover {
 }
 main .input-container button:active {
   box-shadow: none;
+}
+
+main .input-container p {
+  color: black;
+  cursor: pointer;
 }
 
 .currency-container {
@@ -120,6 +125,33 @@ td img {
   text-decoration: none;
 }
 
+#coinlist {
+  background-color: rgb(61, 61, 61);
+  max-width: fit-content;
+  height: fit-content;
+  max-height: 200px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  position: absolute;
+  left: 81%;
+}
+#coinlist option {
+  min-height: 30px;
+  padding: 20px;
+  white-space: nowrap;
+  text-align: start;
+  display: flex;
+  align-items: center;
+}
+#coinlist option:hover {
+  background-color: rgba(255, 255, 255, 0.329);
+}
+.hide {
+  display: none !important;
+}
 @media (max-width: 770px) {
   tr td:nth-of-type(5) {
     display: none;

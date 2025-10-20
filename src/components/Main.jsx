@@ -8,8 +8,9 @@ import { Footer } from "./Footer";
 export function Main({ currency, symbols, setCurrency }) {
   const [coins, setCoins] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [coinContainer, setCoinContainer] = useState([]);
+  const [suggesitions, setSuggestions] = useState([]);
+  const [showSuggesiton, setShowSuggestion] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,30 +18,40 @@ export function Main({ currency, symbols, setCurrency }) {
       const response = await axios.get(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}`
       );
-      setCoins(response.data);
+      setCoins(response.data.slice(0, 10));
       setCoinContainer(response.data);
+      setSuggestions(response.data);
       setInputValue("");
     }
 
     getData();
   }, [currency]);
 
+  useEffect(() => {
+    const query = inputValue.trim().toLowerCase();
+    const filtered = coinContainer.filter((coin) =>
+      coin.name.toLowerCase().includes(query)
+    );
+    if (filtered.length > 0) {
+      setSuggestions(filtered);
+    } else {
+      console.log("No matches found");
+      setSuggestions([]); // clear or show a 'no results' message
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue]);
+
   function handleSearch() {
     const query = inputValue.trim().toLowerCase();
+    const filtered = coinContainer.filter((coin) =>
+      coin.name.toLowerCase().includes(query)
+    );
 
-    if (query === "") {
-      navigate("/"); // go back to main page
+    if (filtered.length > 0) {
+      setCoins(filtered);
     } else {
-      const filtered = coinContainer.filter((coin) =>
-        coin.name.toLowerCase().includes(query)
-      );
-
-      if (filtered.length > 0) {
-        setCoins(filtered);
-      } else {
-        console.log("No matches found");
-        setCoins([]); // clear or show a 'no results' message
-      }
+      console.log("No matches found");
+      setCoins([]); // clear or show a 'no results' message
     }
   }
 
@@ -69,47 +80,28 @@ export function Main({ currency, symbols, setCurrency }) {
             if (e.key === "Enter") handleSearch();
           }}
         />
-        <button onClick={handleSearch}>Search</button>
-        {suggestions.length > 0 && (
-          <ul
-            style={{
-              position: "absolute",
-              top: "100%",
-              left: 0,
-              right: 0,
-              background: "white",
-              listStyle: "none",
-              border: "1px solid #ccc",
-              borderTop: "none",
-              zIndex: 1000,
-              maxHeight: "200px",
-              overflowY: "auto",
-              padding: 0,
-              margin: 0,
-            }}
-          >
-            {suggestions.map((coin) => (
-              <li
-                key={coin.id}
-                onClick={() => {
-                  setInputValue(coin.name);
-                  navigate(`/search/${coin.name.toLowerCase()}`);
-                  setSuggestions([]);
-                }}
-                style={{
-                  padding: "8px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
+        <p
+          onClick={() => {
+            setShowSuggestion(!showSuggesiton);
+          }}
+        >
+          {">"}
+        </p>
+        <datalist id="coinlist" className={showSuggesiton ? "" : "hide"}>
+          {suggesitions.map((suggestion) => {
+            return (
+              <option
+                value={suggestion.name}
+                onClick={(e) => {
+                  setInputValue(e.target.value);
                 }}
               >
-                <img src={coin.thumb} alt={coin.name} width="20" height="20" />
-                {coin.name} ({coin.symbol.toUpperCase()})
-              </li>
-            ))}
-          </ul>
-        )}
+                {suggestion.name}
+              </option>
+            );
+          })}
+        </datalist>
+        <button onClick={handleSearch}>Search</button>
       </div>
       <div className="currency-container">
         <table>

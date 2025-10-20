@@ -39,9 +39,12 @@ header .right select {
   font-size: 13px;
   border-radius: 7px;
   margin-right: 15px;
+  cursor: pointer;
+  outline: none;
 }
-header .right section option {
-  background: transparent;
+header .right select option {
+  background: #1a0033;
+  cursor: pointer;
 }
 header .right .sign-up {
   background-color: white;

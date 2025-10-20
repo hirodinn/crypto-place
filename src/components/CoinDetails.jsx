@@ -5,7 +5,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { LineChart } from "./LineChart";
 import "./CoinDetails.css";
-export function CoinDetails({ currency }) {
+export function CoinDetails({ symbols, currency }) {
   const { id } = useParams();
   const [coinDetails, setCoinDetails] = useState(null);
   const [historicalData, setHistoricalData] = useState();
@@ -28,16 +28,13 @@ export function CoinDetails({ currency }) {
   }, [currency, id]);
   return (
     <div className="coin-details-container">
-      <Header />
       {coinDetails ? (
         <div className="coin-details">
           <img src={coinDetails.image.large} />
           <h1>
             {coinDetails.name} ({coinDetails.symbol.toUpperCase()})
           </h1>
-          {historicalData && (
-            <LineChart historicalData={historicalData} className="line-chart" />
-          )}
+          {historicalData && <LineChart historicalData={historicalData} />}
           <div className="infos">
             <div className="info">
               <p>Crypto Market Rank</p>
@@ -45,26 +42,36 @@ export function CoinDetails({ currency }) {
             </div>
             <div className="info">
               <p>Current Price</p>
-              <p>{coinDetails.market_data.current_price[currency]}</p>
+              <p>
+                {symbols[currency]}{" "}
+                {coinDetails.market_data.current_price[currency]}
+              </p>
             </div>
             <div className="info">
               <p>Market Cap</p>
-              <p>{CoinDetails}</p>
+              <p>
+                {symbols[currency]}{" "}
+                {coinDetails.market_data.market_cap[currency]}
+              </p>
             </div>
             <div className="info">
               <p>24 Hour high</p>
-              <p>{CoinDetails.market_cap_rank}</p>
+              <p>
+                {symbols[currency]} {coinDetails.market_data.high_24h[currency]}
+              </p>
             </div>
             <div className="info">
               <p>24 Hour low</p>
-              <p>{CoinDetails.market_cap_rank}</p>
+              <p>
+                {" "}
+                {symbols[currency]} {coinDetails.market_data.low_24h[currency]}
+              </p>
             </div>
           </div>
         </div>
       ) : (
         <div className="loading"></div>
       )}
-      <Footer />
     </div>
   );
 }

@@ -15,5 +15,5 @@ export function LineChart({ historicalData }) {
       setData(dataCopy);
     }
   }, [historicalData]);
-  return <Chart chartType="LineChart" data={data} height="100%" legendToggle />;
+  return <Chart chartType="LineChart" data={data} width="100%" legendToggle />;
 }

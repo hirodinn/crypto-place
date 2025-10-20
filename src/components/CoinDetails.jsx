@@ -26,22 +26,20 @@ export function CoinDetails() {
     loadHistoricalData();
   }, []);
   return (
-    <>
+    <div className="coin-details-container">
       <Header />
-      <div className="coin-details-container">
-        {coinDetails ? (
-          <div className="coin-details">
-            <img src={coinDetails.image.large} />
-            <h1>
-              {coinDetails.name} ({coinDetails.symbol.toUpperCase()})
-            </h1>
-            {historicalData && <LineChart historicalData={historicalData} />}
-          </div>
-        ) : (
-          <div className="loading"></div>
-        )}
-      </div>
+      {coinDetails ? (
+        <div className="coin-details">
+          <img src={coinDetails.image.large} />
+          <h1>
+            {coinDetails.name} ({coinDetails.symbol.toUpperCase()})
+          </h1>
+          {historicalData && <LineChart historicalData={historicalData} />}
+        </div>
+      ) : (
+        <div className="loading"></div>
+      )}
       <Footer />
-    </>
+    </div>
   );
 }
